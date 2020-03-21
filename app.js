@@ -18,8 +18,16 @@ var commentRoutes=require("./routes/comments"),
 
 
 var app=express();
-//console.log(process.env.DATABASEURL);
-mongoose.connect(process.env.DATABASEURL);
+
+console.log(process.env.DEVELOPER,process.env.DEVELOPER==='1');
+if (process.env.DEVELOPER==='1'){
+	console.log("developer mode");
+	mongoose.connect('mongodb://localhost:27017/yelp_camp_v12', { useNewUrlParser: true }); 
+}else{
+	console.log("user mode");
+	mongoose.connect("mongodb+srv://yiping:hualienperson@cluster0-nncjo.mongodb.net/yelp_camp?retryWrites=true&w=majority");
+}
+//mongoose.connect(process.env.DATABASEURL);
 //mongoose.connect("mongodb+srv://yiping:hualienperson@cluster0-nncjo.mongodb.net/yelp_camp?retryWrites=true&w=majority");
 //mongoose.connect('mongodb://localhost:27017/yelp_camp_v12', { useNewUrlParser: true }); 
 app.use(bodyParser.urlencoded({extended:true}));
@@ -56,7 +64,12 @@ app.use("/campgrounds",campgroundRoutes);
 app.use("/campgrounds/:id/comments",commentRoutes);
 
 
-//app.listen(3000, function() { 
-app.listen(process.env.PORT, process.env.IP, function(){
-  console.log('Server listening on port 3000'); 
-});
+if (process.env.DEVELOPER==='1'){
+	app.listen(3000, function() { 
+		console.log('Server listening on port 3000'); 
+	});
+}else{
+	app.listen(process.env.PORT, process.env.IP, function(){
+  		console.log('Server listening on port 3000'); 
+	});
+};
