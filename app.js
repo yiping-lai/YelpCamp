@@ -18,7 +18,10 @@ var commentRoutes=require("./routes/comments"),
 
 
 var app=express();
-mongoose.connect('mongodb://localhost:27017/yelp_camp_v12', { useNewUrlParser: true }); 
+//console.log(process.env.DATABASEURL);
+mongoose.connect(process.env.DATABASEURL);
+//mongoose.connect("mongodb+srv://yiping:hualienperson@cluster0-nncjo.mongodb.net/yelp_camp?retryWrites=true&w=majority");
+//mongoose.connect('mongodb://localhost:27017/yelp_camp_v12', { useNewUrlParser: true }); 
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine","ejs");
 app.use(express.static(__dirname+"/public"));
@@ -51,6 +54,7 @@ app.use(function(req,res,next){
 app.use(indexRoutes);
 app.use("/campgrounds",campgroundRoutes);
 app.use("/campgrounds/:id/comments",commentRoutes);
+
 
 app.listen(3000, function() { 
   console.log('Server listening on port 3000'); 
