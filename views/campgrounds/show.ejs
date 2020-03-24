@@ -19,7 +19,7 @@
 				</div>
 				<h4><a href="/"><%=campground.name%></a></h4>
 				<p><%=campground.description%></p>
-				<p>Submiited By<em><%=campground.author.username%></em></p>
+				<p>Submiited By <em><%=campground.author.username%></em></p>
 				
 				<% if(currentUser && campground.author.id.equals(currentUser._id)) {%>
 					<a class="btn btn-xs btn-warning" href="/campgrounds/<%=campground._id%>/edit">Edit</a>				
