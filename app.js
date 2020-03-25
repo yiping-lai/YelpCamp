@@ -19,6 +19,8 @@ var commentRoutes=require("./routes/comments"),
 
 var app=express();
 
+console.log(process.env.DEVELOPER);
+
 console.log(process.env.DEVELOPER,process.env.DEVELOPER==='1');
 if (process.env.DEVELOPER==='1'){
 	console.log("developer mode");
