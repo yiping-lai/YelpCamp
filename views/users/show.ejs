@@ -1,0 +1,40 @@
+<%- include("../partials/header") %>
+
+<div class="container">	
+	<div class="row">
+		<div class="col-md-4">
+			<p class="ead"><%=user.username%>'s profile</p>
+			<p class="ead"><%=user.email%></p>
+			<%if (user.isAdmin){%>
+				<p class="ead">Admin right</p>
+			<%}else{%>
+				<p class="ead">Guest right</p>
+			<%}%>
+			<div class="img-thumbnail">
+				<img src='<%=user.avatar%>' alt="user profile image">			
+			</div>
+
+		</div>
+		<div class="col-md-8">
+			<h3>Campgrounds posted:</h3>
+			<hr>
+			<div class="list-group">
+				<%campgrounds.forEach(function(campground){%>
+				<li class="list-group-item"><a href="/campgrounds/<%=campground._id%>"><%=campground.name%></a></li>
+				<%});%>
+			</div>
+			
+			
+			<h3>Commented:</h3>
+			<hr>
+			<div class="list-group">
+				<%comments.forEach(function(comment){%>
+				<li class="list-group-item"><%=comment.text%></li>
+				<%});%>
+			</div>			
+			
+		</div>	
+	</div>
+</div>
+
+<%- include("../partials/footer") %>

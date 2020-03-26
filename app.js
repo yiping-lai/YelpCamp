@@ -1,5 +1,4 @@
 var express=require("express");
-//var request=require("request");
 var bodyParser=require("body-parser");
 var mongoose=require("mongoose");
 var passport=require("passport");
@@ -38,6 +37,9 @@ app.use(express.static(__dirname+"/public"));
 app.use(methodOverride("_method"));
 app.use(flash());
 //seedDB();
+
+
+app.locals.moment = require('moment');
 
 //PASSPORT CONFIGURATION
 app.use(require("express-session")({

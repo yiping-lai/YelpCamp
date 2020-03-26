@@ -22,12 +22,22 @@
 			</div>
 			
 			<div class="collapse navbar-collapse" id="bs-nav-demo">
+				<ul class="nav navbar-nav navbar-left">
+					<li><a href="/campgrounds">Home</a></li>
+					<li><a href="/users">All Users</a></li>
+				</ul>
+				
 				<ul class="nav navbar-nav navbar-right">
 					<% if (!currentUser){ %>
 					<li><a href="/login">Log In</a></li>
 					<li><a href="/register">Sign Up</a></li>							
 					<% }else{ %>
-					<li><a href="#">Signed In As <%=currentUser.username%></a></li>
+					<% if (currentUser.isAdmin){ %>
+						<li><a href="#">Signed in as <%=currentUser.username%> <strong>Admin</strong></a></li>
+					<%}else{%>
+						<li><a href="#">Signed in as <%=currentUser.username%></a></li>
+					<%}%>
+					
 					<li><a href="/logout">Log Out</a></li>							
 					<%}%>				
 				</ul>

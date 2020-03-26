@@ -30,7 +30,7 @@ middlewareObj.checkCommentOwnership=function(req,res,next){
 				//chcek if user owns the camgpround
 				// Note: camgpround.author.id is an object not a string
 				// need to use method to cmpare to req.user._id
-				if(foundComment.author.id.equals(req.user._id)){
+				if(foundComment.author.id.equals(req.user._id) || req.user.isAdmin){
 					next();
 				}else{
 					req.flash("error","You don't have permission to do that");
@@ -65,7 +65,7 @@ middlewareObj.checkCampgroundOnwership=function(req,res,next){
 				//chcek if user owns the camgpround
 				// Note: camgpround.author.id is an object not a string
 				// need to use method to cmpare to req.user._id								
-				if(campground.author.id.equals(req.user._id)){
+				if(campground.author.id.equals(req.user._id) || req.user.isAdmin){
 					next();
 				}else{
 					req.flash("error","You don't have permission to do that");

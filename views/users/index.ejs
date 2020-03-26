@@ -1,0 +1,27 @@
+<%- include("../partials/header") %>
+
+<div class="container list-group">	
+	<%users.forEach(function(user){%>
+		<div class="list-group-item">
+			<div class="row">
+				<div class="col-md-2" style="padding-left: 0px;  padding-right: 0px;">	
+					<img class="img-responsive" src='<%=user.avatar%>' alt="user profile image">			
+				</div>
+
+				<div class="col-md-10">
+					<div class="container">											
+						<p class="ead">username: <%=user.username%></p>
+						<p class="ead">email: <%=user.email%></p>
+						<%if (user.isAdmin){%>
+							<p class="ead">Admin right</p>
+						<%}else{%>
+							<p class="ead">Guest right</p>
+						<%}%>	
+					</div>
+				</div>
+			</div>
+		</div>
+	<%})%>
+</div>
+
+<%- include("../partials/footer") %>
