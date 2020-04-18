@@ -8,8 +8,16 @@
 	<header class="jumbotron">
 		<div class="container">
 			<h1> Welcome to YelpCamp </h1>
-			<p> View our hankd-picked campgrounds </p>
+			<p> View our hand-picked campgrounds </p>
 			<p> <a class="btn btn-primary btn-lg" href=/campgrounds/new> add new campground</a></p>	
+			<p>
+				<form action="/campgrounds" class="form-inline" method="GET">
+					<div class="form-group">
+						<input class="form-control"type="text" name="search" placeholder="Campground search...">
+						<input type="submit" value="Search" class="btn btn-default">
+					</div>					
+				</form>
+			</p>
 		</div>
 	</header>
 	
