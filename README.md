@@ -10,6 +10,7 @@ This is a website managing information about campsite services.
 
 ## Installation Guide
 
+0) Install node v10.16 or later
 1) Install all packages defined in packages.json
 ```bash
 npm install
