@@ -1,5 +1,4 @@
 var express=require("express");
-//var router=express.Router();
 var router=express.Router({mergeParams:true}); // have to use mergeParams to include campgrounds parameters
 var Campground=require("../models/campground");
 var Comment=require("../models/comment");
@@ -13,8 +12,6 @@ var middleware=require("../middleware"); // will require index.js by default
 
 
 router.get("/new",middleware.isLoggedIn,function(req,res){
-	// find camgground by id
-	console.log(req.params.id);
 	Campground.findById(req.params.id,function(err,campground){
 		if (err){
 			console.log(err);
@@ -34,7 +31,6 @@ router.post("/",middleware.isLoggedIn,function(req,res){
 			console.log(err)
 		}else{
 			// create new comments
-			console.log("Campground found.");
 			Comment.create(req.body.comment,function(err,comment){
 				if (err){
 					console.log(err);
@@ -92,10 +88,6 @@ router.delete("/:comment_id",middleware.checkCommentOwnership,function(req,res){
 		}
 	});
 });
-
-
-
-
 
 
 module.exports=router;

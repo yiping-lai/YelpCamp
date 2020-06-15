@@ -32,10 +32,11 @@ router.post("/register",function(req,res){
 	if(req.body.admincode==="secretcode123"){
 		newUser.isAdmin=true
 	}
+	
 	User.register(newUser,req.body.password,function(err,user){
 		if(err){
-			req.flash("error",err.message);			
-			return res.redirect("register");
+			req.flash("error",err.message);				
+			return res.redirect("/register");
 		}
 		passport.authenticate("local")(req,res,function(){
 			req.flash("success","Welcome to YelpCamp "+newUser.username)

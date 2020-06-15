@@ -22,10 +22,10 @@ router.get("/",function(req,res){
         // Get all campgrounds from DB
         Campground.find({name: regex}, function(err, allCampgrounds){
            if(err){
-               console.log(err);
+               req.flash("error","Invalid search key");
            } else {
               if(allCampgrounds.length < 1) {
-                  req.flash("error","No campground found. Please try again.")
+                  req.flash("error","No campground found. Please try again.");
 				  return res.redirect("/campgrounds");
               }
               res.render("campgrounds/index",{campgrounds:allCampgrounds});
@@ -36,7 +36,7 @@ router.get("/",function(req,res){
 		// get all campgrounds from DB
 		Campground.find({},function(err,all_campsites){
 			if (err){
-				console.log(err);
+				req.flash("error","Error. Please try again.");
 			}else{	
 				res.render("campgrounds/index",{campgrounds:all_campsites});		
 			}
@@ -53,7 +53,7 @@ router.get("/new",middleware.isLoggedIn,function(req,res){
 });
 
 
-// add new data to DB
+// CREATE --- add new data to DB
 router.post("/",middleware.isLoggedIn,function(req,res){	
 	// get data from form and add data to campgrounds
 	var name=req.body.name;
@@ -100,15 +100,15 @@ router.get("/:id",function(req,res){
 		
 });
 
-// EDIT campground route
+
+// EDIT campground 
 router.get("/:id/edit",middleware.checkCampgroundOnwership,function(req,res){
 	Campground.findById(req.params.id,function(err,campground){
 		res.render("campgrounds/edit",{campground:campground})
 	});
 });
 
-
-// UPDATE campground route
+// UPDATE campground 
 router.put("/:id",middleware.checkCampgroundOnwership,function(req,res){
 	
 	geocoder.geocode(req.body.location, function (err, data) {

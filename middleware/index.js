@@ -16,17 +16,13 @@ middlewareObj.isLoggedIn=function(req,res,next){
 middlewareObj.checkCommentOwnership=function(req,res,next){
 	if(req.isAuthenticated()){		
 		Comment.findById(req.params.comment_id,function(err,foundComment){
-			if (err){
-				
+			if (err){				
 				res.redirect("back");
 			}else{
             if (!foundComment) {
                     req.flash("error", "Item not found.");
                     return res.redirect("back");
-                }					
-				
-				
-				
+                }									
 				//chcek if user owns the camgpround
 				// Note: camgpround.author.id is an object not a string
 				// need to use method to cmpare to req.user._id
@@ -56,12 +52,11 @@ middlewareObj.checkCampgroundOnwership=function(req,res,next){
 				req.flash("error","Campground not found");
 				res.redirect("back");
 			}else{
-            // Added this block, to check if foundCampground exists, and if it doesn't to throw an error via connect-flash and send us back to the homepage
+            // check if foundCampground exists, and if it doesn't to throw an error via connect-flash and send us back to the homepage
             if (!campground) {
                     req.flash("error", "Item not found.");
                     return res.redirect("back");
-                }				
-				
+                }								
 				//chcek if user owns the camgpround
 				// Note: camgpround.author.id is an object not a string
 				// need to use method to cmpare to req.user._id								

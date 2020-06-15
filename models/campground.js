@@ -1,6 +1,5 @@
 var mongoose=require("mongoose");
 
-// Schema setup
 var campgroundSchema=new mongoose.Schema({
 	name:String,
 	price:String,
@@ -10,6 +9,7 @@ var campgroundSchema=new mongoose.Schema({
 	lat:Number,
 	lng:Number,
 	createdAt:{type:Date, default:Date.now},
+	// object referencing
 	author:{
 		id:{
 			type:mongoose.Schema.Types.ObjectId,
