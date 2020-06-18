@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This is a website managing information about campsite services.
+This is a full-stack website managing information about campsite services.
 1) Display all campgrounds and search for campgrounds. 
 2) Register and sign up as a member.
 3) Create, edit, and delete campgrounds or comments associated with the campgrounds.
